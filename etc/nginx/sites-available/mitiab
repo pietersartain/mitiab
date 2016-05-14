@@ -1,0 +1,9 @@
+server {
+  listen 80;
+
+  location / { try_files $uri @mitiab; }
+  location @mitiab {
+    include uwsgi_params;
+    uwsgi_pass unix:/tmp/mitiab;
+  }
+}

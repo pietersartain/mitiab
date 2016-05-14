@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+    {# These allow the mobile site scale properly. I think. #}
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {# Apparantly we can now ditch the type attributes and some closing tags
+        in html5. But not all closing tags.
+
+        Also, because this is the internet, some people <del>are wrong</del>
+        disagree in the comments.
+
+        http://html5doctor.com/avoiding-common-html5-mistakes/
+    #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/mitiab.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.0.3.min.js') }}"></script> 
+    <script type="text/javascript" src="{{ url_for('static', filename='js/mitiab.js') }}"></script> 
+
+    <title>{% block title %}{% endblock %} - mitiab</title>
+    {% endblock %}
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+  </body>
+</html>

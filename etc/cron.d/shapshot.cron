@@ -1,0 +1,2 @@
+# Take a db snapshot every 15 minutes
+*/15 * * * * bash /support/snapshot.sh

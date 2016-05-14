@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e
+
+# Stop daemons from starting automatically
+update-rc.d -f mitiab remove
+

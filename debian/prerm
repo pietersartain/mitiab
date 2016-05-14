@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Stop daemons now
+service mitiab stop

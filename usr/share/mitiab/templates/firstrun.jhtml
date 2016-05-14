@@ -1,0 +1,12 @@
+{% extends "index.jhtml" %}
+{% block title %}Welcome!{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+
+<h1>Clinic Setup</h1>
+
+<p>Are you setting this clinic up for the first time, or are you expecting to see some patient records?</p>
+
+{% endblock %}

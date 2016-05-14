@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+
+## Ipseity
+# We want this to run on port 80, so ensure the default nginx site is removed
+if [ -e /etc/nginx/sites-enabled/default ] ; then
+	rm /etc/nginx/sites-enabled/default
+fi
+# Configure daemons to start automatically
+update-rc.d mitiab defaults
+
+# And start daemons
+service mitiab start

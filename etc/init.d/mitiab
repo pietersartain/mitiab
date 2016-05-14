@@ -1,0 +1,56 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:		mitiab
+# Required-Start:	$remote_fs $syslog
+# Required-Stop:	$remote_fs $syslog
+# Default-Start:	2 3 4 5
+# Default-Stop:		0 1 6
+# Short-Description:	Ipseity web control panel
+### END INIT INFO
+
+set -e
+
+# Gleefully pilfered from:
+# http://stackoverflow.com/questions/5500943/best-init-script-for-running-an-application-as-a-separate-user
+
+SITENAME="mitiab"
+PIDFILE=/var/run/site-$SITENAME.pid
+SCRIPT=bin/app.pl
+USER=root
+UDS=/tmp/$SITENAME
+
+export PYTHONPATH="/usr/share"
+export TZ="GB"
+
+case "$1" in
+  start)
+        /usr/local/bin/uwsgi \
+        --socket $UDS --master --module $SITENAME --processes 4 --callable app \
+        --pidfile $PIDFILE --daemonize /var/log/$SITENAME.log
+    if [ $? = 0 ]; then echo "Started $SITENAME."; fi
+    ;;
+  stop)
+    /usr/local/bin/uwsgi --stop $PIDFILE
+    if [ $? = 0 ]; then echo "Stopped $SITENAME."; fi
+    ;;
+  restart)
+    /usr/local/bin/uwsgi --reload $PIDFILE
+    if [ $? = 0 ]; then echo "Restarted $SITENAME."; fi
+    ;;
+  status)
+    if [ -f $PIDFILE ]; then
+      #pgrep 
+      if [ $? = 0 ]; then
+        echo "Running."
+      fi
+    else
+      echo "Not running."
+    fi
+    ;;
+  *)
+    echo "Usage: $SCRIPTNAME {start|stop|restart|status}" >&2
+    exit 3
+    ;;
+esac
+exit 0

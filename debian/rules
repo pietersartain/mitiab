@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+## This package can be be built with dpkg-buildpackage -rfakeroot -b
+
+PACKAGE = $(firstword $(shell dh_listpackages))
+TMP = $(CURDIR)/debian/$(PACKAGE)
+
+%:
+
+override_dh_auto_install:
+	# Copies the root of this package into the debian tmp directory
+	# This is instead of running some kinda "make install"
+	find . -maxdepth 1 -not \( \
+		-name debian -o \
+		-name . -o \
+		-name t -o \
+		-name .git -o \
+		-name readme.md \
+		\) -exec echo Copy '{}' \; -exec cp -dR '{}' "$(TMP)"/ \;

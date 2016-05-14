@@ -1,0 +1,12 @@
+Source: mitiab
+Section: main
+Priority: standard
+Build-Depends: debhelper (>= 7.4.15)
+Maintainer: Pieter Sartain <pesartain@googlemail.com>
+Standards-Version:  3.8.4
+Homepage: https://github.com/pietersartain/mitiab
+
+Package: mitiab
+Architecture: all
+Depends: nginx
+Description: Ipseity web front and nfcdaemon
