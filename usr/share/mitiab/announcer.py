@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 # Raspberry Pi setup:
 # sudo systemctl stop serial-getty@ttyAMA0.service
@@ -18,11 +18,8 @@
 # USAGE FROM PYTHON:
 #
 # from announcer import Announcer
-#
-# message = bytes("Python caller test", "utf-8")
-#
 # announcer = Announcer()
-# announcer.announce(message)
+# announcer.announce("Python caller test")
 
 import serial
 import sys
@@ -38,10 +35,10 @@ class Announcer(object):
 
 ################################################################################
 if __name__ == "__main__":
-    message = bytes("No message?", "utf-8")
+    message = "No message?"
 
     if len(sys.argv) > 1:
-      message = bytes(" ".join(sys.argv[1:]), "utf-8")
+      message = " ".join(sys.argv[1:])
 
     announcer = Announcer()
     announcer.announce(message)
