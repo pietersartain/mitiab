@@ -1,0 +1,4 @@
+[Unit]
+Description=Startup state, in which all that is running is Resoring service
+Requires=restore-app.service
+AllowIsolate=true

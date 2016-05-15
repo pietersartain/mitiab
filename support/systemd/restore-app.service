@@ -1,0 +1,8 @@
+# A systemd unit file to run the 'restoring' web app via gunicorn
+[Unit]
+Description=Database management for outbreak app
+
+[Service]
+type=simple
+WorkingDirectory=/home/pi/system/mitiab/usr/share
+ExecStart=/home/pi/system/.env-python2/bin/gunicorn -b 0.0.0.0:80 mitiab:app

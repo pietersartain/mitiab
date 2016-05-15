@@ -1,5 +1,0 @@
-[Unit]
-Description=Startup state, in which all that is running is webapp
-Requires=restore-app.service
-AllowIsolate=true
-
