@@ -18,16 +18,17 @@ SITENAME="mitiab"
 PIDFILE=/var/run/site-$SITENAME.pid
 SCRIPT=bin/app.pl
 USER=root
-UDS=/tmp/$SITENAME
+ACTIVATE=/home/www/project/env/bin/activate
+BIND=127.0.0.1:80
 
 export PYTHONPATH="/usr/share"
 export TZ="GB"
 
 case "$1" in
   start)
-        /usr/local/bin/uwsgi \
-        --socket $UDS --master --module $SITENAME --processes 4 --callable app \
-        --pidfile $PIDFILE --daemonize /var/log/$SITENAME.log
+        source $ACTIVATE
+        gunicorn --daemon --bind=$BIND --pid=$PIDFILE --workers=4 --log-file=/var/log/$SITENAME.log $SITENAME:app
+
     if [ $? = 0 ]; then echo "Started $SITENAME."; fi
     ;;
   stop)
