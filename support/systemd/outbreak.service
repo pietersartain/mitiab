@@ -6,6 +6,6 @@ After=outbreak-prepare.service
 
 [Service]
 type=simple
-WorkingDirectory=/service/ohc/outbreak
-ExecStart=/service/ohc/.env/bin/gunicorn outbreak.wsgi -c etc/gunicorn.conf.py directory=/service/ohc/outbreak
+WorkingDirectory=/support/ohc/outbreak
+ExecStart=/support/ohc/.env/bin/gunicorn outbreak.wsgi -c etc/gunicorn_conf.py
 

@@ -1,4 +1,5 @@
 [Unit]
 Description=Running state, in which the Outbreak web app is running
 Requires=outbreak.service
+AllowIsolate=true
 
