@@ -4,6 +4,7 @@ set -e
 ## This is the initialisation stage, that happens as we set up the Pi
 cd "`dirname $0`"
 
+ln -sf /support /home/pi/system/mitiab/support
 apt-get update
 apt-get install -y python-virtualenv python-dev libpq-dev libffi-dev git postgresql-9.4
 su postgres -c 'psql -c "drop database outbreak;" || true'
@@ -18,4 +19,10 @@ virtualenv .env
 . .env/bin/activate
 cd outbreak/
 pip install -r requirements.txt
+deactivate
+
+virtualenv /home/pi/system/.env-python2/
+. /home/pi/system/.env-python2/bin/activate
+pip install gunicorn flask
+
 
