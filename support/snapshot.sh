@@ -14,10 +14,11 @@ device=/dev/sdXXX
 
 pg_dump dbname > /tmp/db_dump
 sha256hash=$(sha256sum /tmp/db_dump)
+idx=$(cat /etc/snapshot_idx)
+idx=$((idx+1))
 
 mount $device /mnt/storage && \
-cp /tmp/db_dump /mnt/storage/snapshot-$(ls | head -n 1 | awk -F'-' '{print 2}')-$sha256hash-$(date +%F-%R).sql
- && \
+cp /tmp/db_dump /mnt/storage/snapshot-$idx-$sha256hash-$(date +%F-%R).sql && \
 umount $device
 
 status=$?
