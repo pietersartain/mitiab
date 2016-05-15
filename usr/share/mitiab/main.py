@@ -19,7 +19,7 @@ def title():
 
 @app.route("/install/<file>", methods=['POST'])
 def install(file):
-  subprocess.call("/home/pi/system/mitiab/support/restore-backup.sh " + file, shell=True)
-  subprocess.call("systemctl isolate outbreak-running", shell=True)
+  subprocess.call("/home/pi/system/mitiab/support/restore-backup.sh /mnt/storage/" + file, shell=True)
+  subprocess.call("systemctl isolate outbreak-running.target", shell=True)
 
   return render_template('restoring.jhtml')
