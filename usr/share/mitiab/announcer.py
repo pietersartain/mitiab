@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+# Raspberry Pi setup:
+# sudo systemctl stop serial-getty@ttyAMA0.service
+# sudo systemctl disable serial-getty@ttyAMA0.service
+# sudo nano /boot/cmdline.txt
+#     - and remove 'console=serial0,115200 ' from the file
+
 # REQUIREMENTS:
 # `easy_install -Z pyserial` or `pip install pyserial`
 #
