@@ -9,5 +9,6 @@ if ( sys.version_info > (2, 8) ):
 # Flask is not compatible with Python 3.2 currently.
 from flask import Flask
 app = Flask(__name__)
+app.debug = True
 
 import mitiab.main
