@@ -15,5 +15,5 @@ def title():
 
 @app.route("/install/<file>")
 def install(file):
-  system("su postgres -c psql < /mnt/storage/" + file)
-  system("telinit ... ")
+  system("su postgres -c psql outbreak < /mnt/storage/" + file)
+  system("systemctl isolate outbreak-running")
