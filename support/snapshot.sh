@@ -17,8 +17,6 @@ if [ ! -d /mnt/storage ]; then
 	mkdir /mnt/storage
 fi
 
-mount $device /mnt/storage
-
 su postgres -c "pg_dump -d outbreak" > /tmp/db_dump
 sha256hash=$(sha256sum /tmp/db_dump | awk '{print $1}')
 idx=$(cat /etc/snapshot_idx)
