@@ -25,4 +25,7 @@ virtualenv /home/pi/system/.env-python2/
 . /home/pi/system/.env-python2/bin/activate
 pip install gunicorn flask
 
+cp /support/systemd/*.target /support/systemd/*.service /etc/systemd/system/
+systemctl daemon-reload
+systemctl set-default restoring.target
 
