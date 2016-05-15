@@ -8,5 +8,4 @@ cd "`dirname $0`"/ohc/outbreak
 . ../.env/bin/activate
 python manage.py migrate
 python manage.py collectstatic --noinput
-supervisord -c etc/pi.conf
 

@@ -1,0 +1,9 @@
+[Unit]
+Description=The web app handling database restores
+Requires=multi-user.target
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/service/run-the-restore-app.sh
+

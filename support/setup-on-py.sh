@@ -19,4 +19,3 @@ virtualenv .env
 cd outbreak/
 pip install -r requirements.txt
 
-

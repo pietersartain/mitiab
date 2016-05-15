@@ -1,0 +1,10 @@
+[Unit]
+Description=Prep tasks for Outbreak server
+Requires=multi-user.target
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/support/outbreak-prepare.sh
+RemainAfterExit=yes
+
