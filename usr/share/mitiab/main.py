@@ -1,6 +1,7 @@
 from mitiab import app
 from flask import render_template, request, url_for, redirect, send_file, make_response
 import os
+import subprocess
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Main view routes
@@ -10,10 +11,15 @@ import os
 @app.route("/")
 def title():
   # system("mount -o ro /dev/sdXXX /mnt/storage")
-  return render_template('firstrun.jhtml', filelist=os.listdir('/mnt/storage').sort())
+  files = os.listdir('/mnt/storage')
+  files.sort()
+
+  return render_template('firstrun.jhtml', filelist=files)
 
 
-@app.route("/install/<file>")
+@app.route("/install/<file>", methods=['POST'])
 def install(file):
-  system("su postgres -c psql outbreak < /mnt/storage/" + file)
-  system("systemctl isolate outbreak-running")
+  subprocess.call("/home/pi/system/mitiab/support/restore-backup.sh " + file, shell=True)
+  subprocess.call("systemctl isolate outbreak-running", shell=True)
+
+  return render_template('restoring.jhtml')

@@ -1,0 +1,8 @@
+{% extends "index.jhtml" %}
+{% block title %}Restoring!{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+Restore is now running.
+{% endblock %}
