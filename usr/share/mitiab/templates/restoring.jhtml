@@ -4,5 +4,5 @@
   {{ super() }}
 {% endblock %}
 {% block content %}
-Restore is now running.
+<a href="/">System is now booting up. This may take a few minutes. Try log in by clicking here.</a>
 {% endblock %}
