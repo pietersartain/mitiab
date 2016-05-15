@@ -9,4 +9,13 @@
 
 <p>Are you setting this clinic up for the first time, or are you expecting to see some patient records?</p>
 
+{% for file in filelist %}
+<div>
+  <h3>{{ file }}</h3>
+  <form method="post" action="/install/{{ file }}">
+    <input type="submit" value="Use this backup">
+  </form>
+</div>
+{% endfor %}
+
 {% endblock %}

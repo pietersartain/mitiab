@@ -1,5 +1,6 @@
 from mitiab import app
 from flask import render_template, request, url_for, redirect, send_file, make_response
+import os
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Main view routes
@@ -8,8 +9,11 @@ from flask import render_template, request, url_for, redirect, send_file, make_r
 # We have 3 different types of views atm, but / isn't one of them.
 @app.route("/")
 def title():
-  return render_template('firstrun.jhtml')
+  # system("mount -o ro /dev/sdXXX /mnt/storage")
+  return render_template('firstrun.jhtml', filelist=os.listdir('/mnt/storage').sort())
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# ... views
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+@app.route("/install/<file>")
+def install(file):
+  system("su postgres -c psql < /mnt/storage/" + file)
+  system("telinit ... ")
