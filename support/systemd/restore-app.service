@@ -1,6 +1,8 @@
 # A systemd unit file to run the 'restoring' web app via gunicorn
 [Unit]
 Description=Database management for outbreak app
+Requires=multi-user.target
+After=multi-user.target
 
 [Service]
 type=simple
